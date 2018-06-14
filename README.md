@@ -5,30 +5,24 @@ Easily build Docker images with different versions/combinations of common langua
 ## Prerequisites
 
 - [CircleCI account](https://circleci.com/signup)
-- [Docker Hub account](https://hub.docker.com) (Docker itself **does not** need to be installed on your computer)
+- [Octanner Quay repository account](https://quay.octanner.io) (Docker itself **does not** need to be installed on your computer)
 - [Make](https://en.wikipedia.org/wiki/Make_(software)) & [Perl](https://perl.org) (included in most macOS & Linux installations)
 
 ## Usage
 
-**1. Fork this repository and start building it on CircleCI:**
+**1.** Clone this repository and start building it on CircleCI
 
-![Setup Project](https://raw.githubusercontent.com/CircleCI-Public/dockerfile-wizard/master/img/setup%20project.jpg "Setup Project")
+**2.** Enter the cloned `dockerfile-wizard` directory and run `make ready` to prepare the `config.yml` file for building Docker images on CircleCI
 
-**2. Add your Docker Hub username (`DOCKER_USERNAME`) and password (`DOCKER_PASSWORD`) to CircleCI, either as project-specific environment variables (shown below), or as resources in your **org-global** (default) [Context](https://circleci.com/docs/2.0/contexts)**
+**3.** Run `make setup` in the cloned directory, or else manually add the versions/dependencies that you need to `.circleci/config.yml` as specified in the [`image_config` section](https://github.com/octanner/dockerfile-wizard/blob/master/.circleci/config.yml)
 
-![Environment Variables](https://raw.githubusercontent.com/CircleCI-Public/dockerfile-wizard/master/img/env%20vars.jpg "Environment Variables")
+**4.** Commit and push your changes
 
-**3.** Clone your fork of the project onto your computer
+Once the build has finished, your image will be available at `https://quay.octanner.io/organization/developer/IMAGE_NAME` and can be used in other projects building on CircleCI (or anywhere else!). The Dockerfile for your image will be stored as an artifact in this project's `build` job.
 
-**4.** Enter the cloned `dockerfile-wizard` directory and run `make ready` to prepare the `config.yml` file for building Docker images on CircleCI
+**5.** Run `make reset` and commit and push your changes
 
-**5.** Run `make setup` in the cloned directory, or else manually add the versions/dependencies that you need to `.circleci/config.yml` as specified in the [`image_config` section](https://github.com/CircleCI-Public/dockerfile-wizard/blob/master/.circleci/config.yml)
-
-**6.** Commit and push your changes
-
-Once the build has finished, your image will be available at `http://hub.docker.com/r/DOCKER_USERNAME/IMAGE_NAME` and can be used in other projects building on CircleCI (or anywhere else!). The Dockerfile for your image will be stored as an artifact in this project's `build` job.
-
-To use the Dockerfile Wizard again, run `make reset` in the cloned directory, then repeat steps **4-6**.
+**Note: After the build is success in CircleCI, you must commit the changes to `config.yml` after running `make reset` or else other people won't be able to use this project to create a new image again.**
 
 ### How it works
 
@@ -41,7 +35,7 @@ To use the Dockerfile Wizard again, run `make reset` in the cloned directory, th
 - The portions of this repository that run on your local computer are intended for Linux/macOS operating systems; they may not work on Windows
 - This repository has not been tested with every possible permutation of versions/dependencies, and you may encounter errors with some combinations of various languages/tools. If your `build` job fails, check its `docker build` step—there's likely a compilation error with a particular version of Ruby, Node, or Python.
 - Thanks to [jmason](https://github.com/jmason/tap-to-junit-xml) for the `tap-to-junit` script!
-- [Feedback/questions/bugs welcome!](https://github.com/CircleCI-Public/dockerfile-wizard/issues)
+- [Feedback/questions/bugs welcome!](https://github.com/octanner/dockerfile-wizard/issues)
 - Want to do all this yourself? Check out our video on [creating custom Docker images for CircleCI](https://youtube.com/watch?v=JYVLeguIbe0)
 
 ### To-do

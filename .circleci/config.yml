@@ -1,6 +1,6 @@
 image_config: &image_config
 
-  # make sure to set your Docker Hub username & password in CircleCI,
+  # make sure to set your Octanner Quay repository username & password in CircleCI,
   # either as project-specific environment variables
   # or as resources in your organization's org-global Context
 
@@ -43,42 +43,14 @@ jobs:
 
 ##      - run: bash scripts/generate.sh > Dockerfile
 
-##      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+##      - run: docker login -u $OCT_QUAY_USER -p $OCT_QUAY_PASSWORD quay.octanner.io
 
-##      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG .
+##      - run: docker build -t quay.octanner.io/developer/$IMAGE_NAME:$IMAGE_TAG .
 
-##      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG && sleep 10
+##      - run: docker push quay.octanner.io/developer/$IMAGE_NAME:$IMAGE_TAG && sleep 10
 
 ##      - store_artifacts:
 ##          path: Dockerfile
-
-##  test_image:
-##    docker:
-##      - image: $DOCKER_USERNAME/(name of image):(image tag)
-##        environment:
-##          <<: *image_config
-
-##    steps:
-##      - checkout
-
-##      - run:
-##          name: start Xvfb for phantomjs test
-##          command: Xvfb :99
-##          background: true
-
-##      - run:
-##          name: bats tests
-##          command: |
-##            mkdir -p test_results/bats
-##            bats scripts/tests.bats | \
-##            perl scripts/tap-to-junit.sh > \
-##            test_results/bats/results.xml
-
-##      - store_test_results:
-##          path: test_results
-
-##      - store_artifacts:
-##          path: test_results
 
 ##workflows:
 ##  version: 2
@@ -86,8 +58,3 @@ jobs:
 ##    jobs:
 ##      - build:
 ##          context: org-global
-
-##      - test_image:
-##          context: org-global
-##          requires:
-##            - build
