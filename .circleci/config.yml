@@ -19,7 +19,7 @@ image_config: &image_config
 
   NODE_VERSION_NUM: 10.7.0
 
-  # # PYTHON_VERSION_NUM: # pick a version from https://python.org/ftp/python
+  # PYTHON_VERSION_NUM: # pick a version from https://python.org/ftp/python
 
   JAVA: false
 
@@ -41,20 +41,20 @@ jobs:
     steps:
       - checkout
 
-      - run: bash scripts/generate.sh > Dockerfile
+##      - run: bash scripts/generate.sh > Dockerfile
 
-      - run: docker login -u $OCT_QUAY_USER -p $OCT_QUAY_PASSWORD quay.octanner.io
+##      - run: docker login -u $OCT_QUAY_USER -p $OCT_QUAY_PASSWORD quay.octanner.io
 
-      - run: docker build -t quay.octanner.io/developer/$IMAGE_NAME:$IMAGE_TAG .
+##      - run: docker build -t quay.octanner.io/developer/$IMAGE_NAME:$IMAGE_TAG .
 
-      - run: docker push quay.octanner.io/developer/$IMAGE_NAME:$IMAGE_TAG && sleep 10
+##      - run: docker push quay.octanner.io/developer/$IMAGE_NAME:$IMAGE_TAG && sleep 10
 
-      - store_artifacts:
-          path: Dockerfile
+##      - store_artifacts:
+##          path: Dockerfile
 
-workflows:
-  version: 2
-  dockerfile_wizard:
-    jobs:
-      - build:
-          context: org-global
+##workflows:
+##  version: 2
+##  dockerfile_wizard:
+##    jobs:
+##      - build:
+##          context: org-global
