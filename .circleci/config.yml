@@ -6,7 +6,7 @@ image_config: &image_config
 
   IMAGE_NAME: node-with-ruby
 
-  IMAGE_TAG: 10.7.0-2.5.0
+  IMAGE_TAG: 8.11-2.5.3
 
   # NOTE: if you're modifying this config.yml file manually
   # rather than using the included setup script,
@@ -15,9 +15,9 @@ image_config: &image_config
 
   LINUX_VERSION: UBUNTU_TRUSTY
 
-  RUBY_VERSION_NUM: 2.5.0
+  RUBY_VERSION_NUM: 2.5.3
 
-  NODE_VERSION_NUM: 10.7.0
+  NODE_VERSION_NUM: 8.11
 
   # PYTHON_VERSION_NUM: # pick a version from https://python.org/ftp/python
 
@@ -29,7 +29,7 @@ image_config: &image_config
 
   DOCKERIZE: false
 
-  BROWSERS: false
+  BROWSERS: true
 
 version: 2
 jobs:
